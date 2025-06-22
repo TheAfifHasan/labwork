@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modify Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label, input, button {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 300px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="myTextBox">ID:</label>
+  <input type="text" id="myTextBox" />
+
+  <button id="modifyBtn">Modify</button>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <label for="nameInput">Name:</label>
+      <input type="text" id="nameInput" />
+      <label for="marksInput">Marks:</label>
+      <input type="text" id="marksInput" />
+      <button id="updateBtn">Update</button>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal')
+    const modifyBtn = document.getElementById('modifyBtn')
+    const updateBtn = document.getElementById('updateBtn')
+
+    modifyBtn.onclick = () => {
+      modal.style.display = 'flex'
+    }
+
+    updateBtn.onclick = () => {
+      alert('Name: ' + document.getElementById('nameInput').value + '\nMarks: ' + document.getElementById('marksInput').value)
+      modal.style.display = 'none'
+    }
+
+    window.onclick = e => {
+      if (e.target === modal) modal.style.display = 'none'
+    }
+  </script>
+
+</body>
+</html>

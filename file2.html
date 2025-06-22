@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Table</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">User Details</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Marks</th>
+        </tr>
+    </thead>
+    <tbody id="userTableBody">
+        <!-- Rows will be added here dynamically -->
+    </tbody>
+</table>
+
+<script>
+    // Get users from localStorage or empty array if none
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    const tbody = document.getElementById('userTableBody');
+
+    // Function to create table rows for each user
+    function populateTable() {
+        tbody.innerHTML = ''; // Clear existing rows
+
+        // Add user rows first
+        users.forEach(user => {
+            const row = document.createElement('tr');
+
+            const nameTd = document.createElement('td');
+            nameTd.textContent = user.name;
+            row.appendChild(nameTd);
+
+            const idTd = document.createElement('td');
+            idTd.textContent = user.id;
+            row.appendChild(idTd);
+
+            const marksTd = document.createElement('td');
+            marksTd.textContent = user.marks;
+            row.appendChild(marksTd);
+
+            tbody.appendChild(row);
+        });
+
+        // Add blank rows to make total rows = 5
+        const totalRows = 5;
+        const blanksToAdd = totalRows - users.length;
+        for (let i = 0; i < blanksToAdd; i++) {
+            const blankRow = document.createElement('tr');
+            for (let j = 0; j < 3; j++) {
+                const blankCell = document.createElement('td');
+                blankCell.textContent = ''; // blank cell
+                blankRow.appendChild(blankCell);
+            }
+            tbody.appendChild(blankRow);
+        }
+    }
+
+    populateTable();
+</script>
+
+</body>
+</html>
