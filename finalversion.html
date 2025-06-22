@@ -109,7 +109,6 @@
       background: #f0f5ff;
     }
 
-    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -173,18 +172,14 @@
           <th>Marks</th>
         </tr>
       </thead>
-      <tbody>
-        <!-- Filled dynamically -->
-      </tbody>
+      <tbody></tbody>
     </table>
 
-    <!-- Modify section -->
     <label for="myTextBox" style="font-weight:600;">Enter ID to Modify:</label>
     <input type="text" id="myTextBox" placeholder="User ID" />
     <button id="modifyBtn">Modify</button>
   </div>
 
-  <!-- Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <label for="nameInput">Name:</label>
@@ -230,14 +225,13 @@
 
       if (!name || !marks || !id) return;
 
-      if (Number(marks) > 100) {
-        alert("Marks cannot be greater than 100!");
+      if (Number(marks) < 0 || Number(marks) > 100) {
+        alert("Marks must be between 0 and 100!");
         return;
       }
 
       let users = JSON.parse(localStorage.getItem('users')) || [];
 
-      // Check for duplicate ID
       if (users.some(u => u.id === id)) {
         alert("ID already exists!");
         return;
@@ -284,8 +278,8 @@
 
       if (!name || !marks || currentEditIndex === null) return;
 
-      if (Number(marks) > 100) {
-        alert("Marks cannot be greater than 100!");
+      if (Number(marks) < 0 || Number(marks) > 100) {
+        alert("Marks must be between 0 and 100!");
         return;
       }
 
